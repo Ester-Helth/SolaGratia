@@ -1,13 +1,20 @@
 /* color palette */
 :root {
   --lightgreen: #B1B193;
-  --darkgreen: #444125;
+  --darkgreen: #3d3a1b;
   --orange: #D8815D;
   --yellow: #E3B76A;
 
-  
   --black: #070707;
   --white: #FAFAFA;
 }
+
+/* fonts */
+{
+  font-family: "elza-text", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 
