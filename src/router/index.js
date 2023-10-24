@@ -4,11 +4,63 @@ import HomeView from '../views/HomeView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+
+    // routes for the navbar
     {
       path: '/',
       name: 'home',
       component: HomeView
     },
+    {
+      path: '/grafik',
+      name: 'grafik',
+      component: () => import('../views/grafikView.vue')
+    },
+    {
+      path: '/tøj',
+      name: 'tøj',
+      component: () => import('../views/tøjView.vue')
+    },
+    {
+      path: '/køkken',
+      name: 'køkken',
+      component: () => import('../views/køkkenView.vue')
+    },
+    {
+      path: '/bøger',
+      name: 'bøger',
+      component: () => import('../views/bøgerView.vue')
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: () => import('../views/blogView.vue')
+    },
+
+    // routes for the footer
+    {
+      path: '/fragtsinfo',
+      name: 'fragtsinfo',
+      component: () => import('../views/fragtsinfoView.vue')
+    },
+    {
+      path: '/betalingsmetoder',
+      name: 'betalingsmetoder',
+      component: () => import('../views/betalingsmetoderView.vue')
+    },
+    {
+      path: '/cookies',
+      name: 'cookies',
+      component: () => import('../views/cookiesView.vue')
+    },
+    {
+      path: '/kontakt',
+      name: 'kontakt',
+      component: () => import('../views/kontaktView.vue')
+    },
+
+
+    // ahhhm I'll have to find out what this is for
     {
       path: '/about',
       name: 'about',
