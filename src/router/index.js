@@ -14,49 +14,49 @@ const router = createRouter({
     {
       path: '/grafik',
       name: 'grafik',
-      component: () => import('../views/grafikView.vue')
+      component: () => import('../views/GrafikView.vue')
     },
     {
       path: '/tøj',
       name: 'tøj',
-      component: () => import('../views/tøjView.vue')
+      component: () => import('../views/TøjView.vue')
     },
     {
       path: '/køkken',
       name: 'køkken',
-      component: () => import('../views/køkkenView.vue')
+      component: () => import('../views/KøkkenView.vue')
     },
     {
       path: '/bøger',
       name: 'bøger',
-      component: () => import('../views/bøgerView.vue')
+      component: () => import('../views/BøgerView.vue')
     },
     {
       path: '/blog',
       name: 'blog',
-      component: () => import('../views/blogView.vue')
+      component: () => import('../views/BlogView.vue')
     },
 
     // routes for the footer
     {
       path: '/fragtsinfo',
       name: 'fragtsinfo',
-      component: () => import('../views/fragtsinfoView.vue')
+      component: () => import('../views/FragtsinfoView.vue')
     },
     {
       path: '/betalingsmetoder',
       name: 'betalingsmetoder',
-      component: () => import('../views/betalingsmetoderView.vue')
+      component: () => import('../views/BetalingsmetoderView.vue')
     },
     {
       path: '/cookies',
       name: 'cookies',
-      component: () => import('../views/cookiesView.vue')
+      component: () => import('../views/CookiesView.vue')
     },
     {
       path: '/kontakt',
       name: 'kontakt',
-      component: () => import('../views/kontaktView.vue')
+      component: () => import('../views/KontaktView.vue')
     },
 
 
@@ -69,6 +69,9 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
     }, 
+
+
+    // Admin routes for login system
     {
       path: '/navguard',
       name: 'navguard',
@@ -78,9 +81,9 @@ const router = createRouter({
       }
     },
     {
-      path: '/login',
-      name: 'login',
-      component: () => import ('../views/LoginView.vue')
+      path: '/log-ind',
+      name: 'log-ind',
+      component: () => import ('../views/LogindView.vue')
     },
   ]
 })
