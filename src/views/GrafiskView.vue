@@ -2,7 +2,7 @@
     <div class="grafik-container">
         
         <div class="flex flex-col items-center">
-            <h1>Grafik</h1>
+            <h1>Grafisk</h1>
             <p>Her kan du se vores grafik</p>
         </div>
 
@@ -17,7 +17,12 @@
 
 <style lang="scss">
 
-
+h1 {
+  font-size: 40px;
+  font-family: "adorn-condensed-sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 .grafik-container {
     display: flex;

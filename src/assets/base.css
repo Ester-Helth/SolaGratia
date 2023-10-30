@@ -2,14 +2,19 @@
   :root {
     --lightgreen: #B1B193;
     --darkgreen: #3d3a1b;
-    --orange: #D8815D;
+    --evendarkergreen: #383518;
+    --orange: #D9815D;
+    --darkerorange: #cf7a59;
     --yellow: #E3B76A;
+    --darkeryellow: #d8ac60;
+    --rose: #B3726A;
+    --brown: #C8A288;
 
     --black: #070707;
     --white: #FAFAFA;
-    --grey : #242424;
+    --grey : #424242;
 
-    --icons: #1e1e1e;
+    --icons: #262626;
   }
 
 /* typography */
@@ -17,8 +22,8 @@
   /* Headlines (just one pr page, for better SEO) */
   h1 {
     color: var(--black);
-    font-size: 22px; 
-    font-family: adorn-condensed-sans, sans-serif;
+    font-size: 42px; 
+    font-family: "adorn-condensed-sans", sans-serif;
     font-weight: 400;
     font-style: normal;
   }
@@ -58,26 +63,23 @@
     font-family: adorn-condensed-sans, sans-serif;
     font-weight: 400;
     font-style: normal;
+    justify-self: center;
   }
 
   /* Navigation */
   nav a {
     text-decoration: none;
-    color: var(--grey);
+    color: var(--black);
     font-size: 19px;
     font-weight: 400;
     font-style: normal;
     font-family: "elza-text", sans-serif;
-  }
-
-  /* Navigation hover*/
-  nav a:hover {
-    background-color: var(--forthcolor);
+    padding: 5px 0;
   }
 
   /* Navigation active*/
   nav a.router-link-exact-active {
-    background-color: var(--forthcolor);
+    font-weight: 500;
   }
 
   /* footer text*/
@@ -96,4 +98,58 @@
     text-decoration: underline;
   }
 
+/* Buttons */
+
+  /* Buttons with the class .themebutton */
+  .themebutton{
+    background-color: var(--orange);
+    color: var(--white);
+    font-size: 15px;
+    font-family: "elza-text", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) ;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .themebutton:hover {
+    background-color: var(--darkerorange);
+  }
+
+  .differentbutton {
+    background-color: var(--darkgreen);
+    color: var(--white);
+    font-size: 15px;
+    font-family: "elza-text", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) ;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .differentbutton:hover {
+    background-color: var(--evendarkergreen);
+  }
+
+
+/* Label for fx login */
+label {
+  color: var(--white);
+  font-size: 15px;
+  font-family: "elza-text", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+input {
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-top: 5px;
+}
 

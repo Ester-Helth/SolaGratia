@@ -1,6 +1,12 @@
 <template>
     <div>
 
+        <div>
+        <h1>VIP</h1>
+        </div>
+        
+        <!-- add event -->
+        
     </div>
 </template>
 
@@ -8,6 +14,6 @@
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 </style>

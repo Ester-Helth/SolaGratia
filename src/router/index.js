@@ -12,9 +12,9 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/grafik',
-      name: 'grafik',
-      component: () => import('../views/GrafikView.vue')
+      path: '/grafisk',
+      name: 'grafisk',
+      component: () => import('../views/GrafiskView.vue')
     },
     {
       path: '/tøj',
