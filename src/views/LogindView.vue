@@ -16,13 +16,13 @@
         <!-- Password -->
         <div class="flex flex-col">
           <label for="password">Kodeord</label>
-          <input type="password" v-model="password"/>
+          <input type="password" v-model="password" @keyup.enter="logIn"/>
         </div>
 
         <!-- Remember me checkbox -->
         <div class="flex flex-row">
-          <input type="checkbox" id="rememberme" name="rememberme" :true="true" :false="false" v-model="rememberMe" value="rememberme">
-          <label for="rememberme">Husk mig</label>
+          <input type="checkbox" id="rememberme" name="rememberme" :true="true" :false="false" v-model="rememberMe" value="rememberme" @keyup.enter="logIn">
+          <label for="rememberme">Husk e-mail</label>
         </div>
           
         <!-- Error message -->
@@ -51,16 +51,14 @@ const errMsg = ref ('')
 const rememberMe = ref(false);
 
 
-    // Function to handle login
+    // Function for login
     const login = () => {
-      // Handle the login logic here
       if (rememberMe.value) {
         navigator.credentials.store(new PasswordCredential({
           id: email.value,
           password: password.value,
         }));
       }
-      // Continue with the login process
     };
 
     // Check for saved credentials when the component is mounted
@@ -83,12 +81,12 @@ const rememberMe = ref(false);
 const rememberMe = ref(false);
  */
 
-/* code for login auth with firebase  --> user is send to /navguard */
+/* code for login auth with firebase  --> user is send to /VIP (navguard) */
 let logIn = () => {
     signInWithEmailAndPassword(auth, email.value, password.value)
     .then((data) => {
         console.log("test date", data)
-        router.push('/navguard')
+        router.push('/VIP')
 
         if (rememberMe.value) {
         navigator.credentials.store(new PasswordCredential({
@@ -126,7 +124,7 @@ let logIn = () => {
         errMsg.value = "Ugyldigt password."
         break;
       default:
-        errMsg.value = "En fejl er opstået. Prøv igen med en anden email eller adgangskode."
+        errMsg.value = "Der skete en fejl - prøv igen."
         break;
     }
     })

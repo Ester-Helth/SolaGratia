@@ -31,10 +31,10 @@
   /* Subtitles */
   h2 {
     color: var(--black);
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 22px;
+    font-family: "adorn-condensed-sans", sans-serif;
+    font-weight: 400;
     font-style: normal;
-    font-family: "elza-text", sans-serif;
   }
 
   /* Subtitles */
@@ -144,7 +144,7 @@
   }
 
 
-/* Label for fx login */
+/* Label for fx login and forms in VIP*/
 label {
   color: var(--white);
   font-size: 15px;
@@ -153,6 +153,7 @@ label {
   font-style: normal;
 }
 
+/* input for fx login - inputs for forms VIP is at the bottom of its routerpage*/
 input {
   padding: 3px 10px;
   border-radius: 4px;

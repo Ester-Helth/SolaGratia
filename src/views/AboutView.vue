@@ -1,15 +1,15 @@
-<!-- <template>
+<template>
   <div class="about">
     <h1>This is an about page</h1>
 
     <button class="btn-add" @click="firebaseAddSingleItem()">Add Item</button>
     <div>
-      <input type="text" placeholder="Product name" v-model="AddProductData.productName" >
-
+  <!--       <input type="text" placeholder="Product name" v-model="AddProductData.productName" >
+ -->
     </div>
     <hr>
 
-    <div v-for="product in products" :key="product">
+    <div v-for="product in produkter" :key="product">
       <p>
         ProductID: {{ product.id  }}
       </p>
@@ -31,21 +31,21 @@
 </template>
 
 <script setup>
-import useProducts from '../modules/useProducts.js';
+import useProducts from '../modules/useProdukter.js';
 import { onMounted } from 'vue'
 
 const { 
-  products, 
-  getProductsData, 
-  firebaseDeleteSingleItem, 
-  firebaseAddSingleItem ,
-  AddProductData,
-  firebaseUpdateSingleItem,
+  produkter,  // henter data så bruger kan se det
+  getProdukterData,   // henter data så bruger kan se det
+  firebaseDeleteSingleItem, // til admin, så de kan slette produkter
+  firebaseAddSingleItem , // til admin, så de kan tilføje produkter
+  AddProductData,         // til admin, så de kan tilføje produkter - hører sammen med firebaseAddSingleItem
+  firebaseUpdateSingleItem, // til admin, så de kan redigere produkter
   //UpdateProductData
 } = useProducts();
 
 onMounted(() => {
-  getProductsData();
+  getProdukterData()
 })
 
 </script>
@@ -58,4 +58,4 @@ onMounted(() => {
     align-items: center;
   }
 }
-</style> -->
+</style>

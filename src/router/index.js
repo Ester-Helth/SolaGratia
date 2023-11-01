@@ -1,8 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior (to, from, savedPosition) {
+    return { top: 0 }
+  },
   routes: [
 
     // routes for the navbar
@@ -60,7 +63,7 @@ const router = createRouter({
     },
 
 
-    // ahhhm I'll have to find out what this is for
+    // Example - but delete when we have the real pages
     {
       path: '/about',
       name: 'about',
@@ -86,6 +89,7 @@ const router = createRouter({
       component: () => import ('../views/LogindView.vue')
     },
   ]
+
 })
 
 router.beforeEach(async(to, from, next) => {

@@ -1,14 +1,79 @@
+<!-- <template>
+    <div class="about">
+      <h1>This is an about page</h1>
+  
+      <button class="btn-add" @click="firebaseAddSingleItem()">Add Item</button>
+      <div> -->
+    <!--       <input type="text" placeholder="Product name" v-model="AddProductData.productName" >
+   -->
+   <!--    </div>
+      <hr>
+  
+      <div v-for="product in produkter" :key="product">
+        <p>
+          ProductID: {{ product.id  }}
+        </p>
+        <p>
+          ProductName: {{ product.productName }}
+        </p>
+        <p>
+          ProductPrice: {{ product.productPrice }}
+        </p>
+        <button class="btn-delete" @click="firebaseDeleteSingleItem(product.id)">Delete item</button>
+      
+        <p>
+          <input type="text" placeholder="New product name" v-model="product.productName" />
+        </p>
+        <button class="btn-edit" @click="firebaseUpdateSingleItem(product.id)">Edit item</button>
+        <hr>
+      </div>
+    </div> 
+  </template>-->
+<!--   
+  <script setup>
+  import useProducts from '../modules/useProdukter.js';
+  import { onMounted } from 'vue'
+  
+  const { 
+    produkter,  // henter data så bruger kan se det
+    getProdukterData,   // henter data så bruger kan se det
+    firebaseDeleteSingleItem, // til admin, så de kan slette produkter
+    firebaseAddSingleItem , // til admin, så de kan tilføje produkter
+    AddProductData,         // til admin, så de kan tilføje produkter - hører sammen med firebaseAddSingleItem
+    firebaseUpdateSingleItem, // til admin, så de kan redigere produkter
+    //UpdateProductData
+  } = useProducts();
+  
+  onMounted(() => {
+    getProdukterData()
+  })
+  
+  </script>
+  
+  <style>
+  @media (min-width: 1024px) {
+    .about {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+  }
+  </style>
+   -->
+<!-- Din egen nye udgave -->
+
 <template>
     <div class="navguard_container">
+
         <div class="flex justify-center">
             <h1>VIP</h1>
         </div>
 
-        <!-- Se og ændrer eksisterende produkter -->
+        <!-- See and edit exsisting products -->
         <div>
-            <h2 class="pt-10">Vælg kategori at ændre eller slette fra</h2>
+            <h2 class="pt-10">Vælg kategori at redigere fra</h2>
 
-            <!-- Vælg en af de 5 forskellige kategorier at ændre fra-->
+            <!-- the 5 categories to open-->
             <div class="pt-4 pb-14 flex gap-4">
                 <!-- <div>
                     <button class="themebutton" @click="toggleGrafik>Vis grafik</button>
@@ -25,28 +90,53 @@
                 // </div>
                 // <div>
                 // <button class="white-btn" @click="">Vis blogopslag</button>
-                // </div> -->
-               
+                // </div> --> 
             </div>
 
         </div>
     
-        <!-- Tilføj et nyt produkt -->
+        <!-- Add new product -->
         <div class="flex flex-col content-center justify-center pt-10">
-            <h2>Tilføj et nyt produkt</h2>
+            <h2>Tilføj nyt produkt</h2>
+        
+            <form novalidate @submit.stop.prevent="showSnackbar = true">
+                <!-- Name -->
+                <input type="text" placeholder="Produktets titel" v-model="AddProduktData.produktNavn" class="VIP_form_inputs_title">
+
+                <!-- Description -->
+                <div class="mt-2">
+                    <textarea type="text" placeholder="Produkt beskrivelse" rows="7" class="textarea_produktBeskrivelse" v-model="AddProduktData.produktBeskrivelse" />
+                </div>
+
+                <!-- Size -->
+                <input type="text" placeholder="Produktets størelse eller proportioner" v-model="AddProduktData.produktStørrelse" class="VIP_form_inputs">
+
+                <!-- Color or material -->
+                <input type="text" placeholder="Produktets farve eller materialer" v-model="AddProduktData.produktFarve" class="VIP_form_inputs">
+                
+                <!-- Category - make a list here -->
+                <input type="text" placeholder="Kategori" v-model="AddProduktData.produktKategori" class="VIP_form_inputs">
+                
+                <!-- Price -->
+                <input type="text" placeholder="Produktets pris i kr." v-model="AddProduktData.produktPris" class="VIP_form_inputs">
+
+                <!-- image -->
+                <div class="flex flex-col justify-center content-center">
+                    <p>Upload billede herunder</p>
+                    <input v-on:change="AddProduktData.produktBilleder" @change="uploadImg" alt="produkt billede" type="file" label="File input" width="200" height="200">
+                </div>
+                
+                <!-- button to add the product to firebase -->
+                <button class="differentbutton" @click="firebaseAddSingleProdukt()">Tilføj produkt</button>
+            </form>
+
+            <!-- snackbar to show when user clicks the "add product" button above -->
+
+
+            
         </div>
-
-        <button @click="isOpen = true">Add new tutor</button>
-          <teleport to="body">
-            <div class="modal" v-if="isOpen">
-              <TilføjProdukt @close="isOpen = false">
-
-              </TilføjProdukt>
-            </div>
-          </teleport>
-
         
-        
+
     </div>
 </template>
 
@@ -57,11 +147,9 @@
 
     // modules import
     import useProdukter from '../modules/useProdukter.js'
+    // import snackbarTilføjedeProdukter from '../modules/snackbarTilføjedeProdukter.js'
 
-    // components (teleport in template) import
-    import AddProdukt from '../components/TilføjProdukt.vue'
-
-    // grabbing the data we need
+    // grabbing data from useProdukter.js
     const {
     getProdukterData, 
     } = useProdukter();
@@ -70,13 +158,24 @@
     getProdukterData();
     })
 
+    // making it possible to add new products
+    const { 
+    firebaseAddSingleProdukt,
+    AddProduktData,
+    uploadImg,
+  } = useProdukter();
+
+
+
 
     // toggle til "grafik" itmes
+
     // const showGrafik = ref(false);
     // const toggleGrafik= () => {
     // showGrafik.value = !showGrafik.value;
     // }
 
+ 
 
 
 </script>
@@ -87,16 +186,15 @@
 h1 {
     font-size: 42px; 
     font-family: "adorn-condensed-sans", sans-serif;
-    font-weight: 400;
     font-style: normal;
 }
 
 h2 {
     color: var(--black);
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 22px;
+    font-family: "adorn-condensed-sans", sans-serif;
+    font-weight: 400;
     font-style: normal;
-    font-family: "elza-text", sans-serif;
 }
 
 // div containers
@@ -107,4 +205,55 @@ h2 {
     padding: 40px 10%;
     min-height: 100vh;
 }
+
+// form 
+form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+    // textarea for produktBeskrivelse
+    .textarea_produktBeskrivelse{
+        background-color: var(--white);
+        border: none;
+        color: var(--black);
+        padding: 13px 10px;
+        border-radius: 4px;
+        margin: 3px 0;
+        width: 50%;
+        font-size: 15px;
+        font-family: "elza-text", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    // inputs
+    .VIP_form_inputs {
+        background-color: var(--white);
+        border: none;
+        color: var(--black);
+        padding: 13px 10px;
+        border-radius: 4px;
+        margin: 3px 0;
+        width: 50%;
+        font-size: 15px;
+        font-family: "elza-text", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .VIP_form_inputs_title {
+        background-color: var(--white);
+        border: none;
+        color: var(--black);
+        padding: 13px 10px;
+        border-radius: 4px;
+        margin-top: 8px;
+        width: 50%;
+        font-size: 18px;
+        font-family: "elza-text", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
 </style>

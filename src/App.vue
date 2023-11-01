@@ -117,7 +117,7 @@ let logOut = () => {
     
   </header>
 
-  <div class="routervieww">
+  <div class="routerview_container">
     <RouterView/>
   </div>
 
@@ -147,7 +147,7 @@ let logOut = () => {
 
 /* Header */
 header {
-  max-height: 50vh;
+  max-height: 23vh;
   background-color: var(--lightgreen);
   padding: 0 10%;
   display: flex;
@@ -156,6 +156,9 @@ header {
   position: fixed;
   width: 100%;
   box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  top: 0;
+
 
   /* Upper div of header */
   .upperhead {
@@ -181,7 +184,6 @@ header {
   }
 
   h1 {
-  
   font-size: 42px; 
   font-family: "adorn-condensed-sans", sans-serif;
   font-weight: 400;
@@ -254,8 +256,9 @@ header {
   }
 }
 
-RouterView {
-  margin-top: 50vh;
+ /* Container for the routerview in the body */
+.routerview_container {
+  margin-top: 23vh;
 }
 
 /* Footer */
