@@ -18,6 +18,12 @@
           <label for="password">Kodeord</label>
           <input type="password" v-model="password"/>
         </div>
+
+        <!-- Remember me checkbox -->
+        <div class="flex flex-row">
+          <input type="checkbox" id="rememberme" name="rememberme" :true="true" :false="false" v-model="rememberMe" value="rememberme">
+          <label for="rememberme">Husk mig</label>
+        </div>
           
         <!-- Error message -->
         <p v-if="errMsg">{{ errMsg }}</p>
@@ -31,7 +37,8 @@
 
 <script setup>
 
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue';
+
 import { auth } from '../firebase.js'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -41,6 +48,40 @@ let email = ref ('')
 let password = ref ('')
 
 const errMsg = ref ('')
+const rememberMe = ref(false);
+
+
+    // Function to handle login
+    const login = () => {
+      // Handle the login logic here
+      if (rememberMe.value) {
+        navigator.credentials.store(new PasswordCredential({
+          id: email.value,
+          password: password.value,
+        }));
+      }
+      // Continue with the login process
+    };
+
+    // Check for saved credentials when the component is mounted
+    const loadSavedCredentials = async () => {
+      const credentials = await navigator.credentials.get({
+        password: true,
+      });
+
+      if (credentials && credentials.type === 'password') {
+        email.value = credentials.id;
+        password.value = credentials.password;
+      }
+      debugger
+    };
+
+    onMounted(() => {
+      loadSavedCredentials();
+    });
+/* 
+const rememberMe = ref(false);
+ */
 
 /* code for login auth with firebase  --> user is send to /navguard */
 let logIn = () => {
@@ -48,7 +89,26 @@ let logIn = () => {
     .then((data) => {
         console.log("test date", data)
         router.push('/navguard')
+
+        if (rememberMe.value) {
+        navigator.credentials.store(new PasswordCredential({
+          id: email.value,
+          password: password.value,
+        }));
+      }
+
+
+        //if (rememberMe.value) {
+        // If "Remember Me" is checked, save user session data for a longer period
+        // You can use cookies, local storage, or a backend service for this.
+        // Example using local storage:
+       /*  localStorage.setItem('rememberedUser', JSON.stringify({ email: email.value }));
+        console.log("rememberMe", rememberMe.value) */
+    //  }
     })
+
+
+
 
     /* err message in different cases*/
     .catch((error) => {
@@ -71,6 +131,18 @@ let logIn = () => {
     }
     })
 }
+
+
+/* 
+    // Check for saved session data when the component is mounted
+    onMounted(() => {
+      const rememberedUser = localStorage.getItem('rememberedUser');
+      if (rememberedUser) {
+        rememberMe.value = rememberMe;
+        email.value = JSON.parse(rememberedUser).email;
+      }
+    }); */
+
 
 </script>
 
@@ -102,7 +174,7 @@ h1 {
   border-radius: 4px;
 }
 
-// This should be removed when base.css works
+// This should be removed if base.css will gets to work
 input {
   padding: 3px 10px;
   border-radius: 4px;

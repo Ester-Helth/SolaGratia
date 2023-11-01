@@ -67,7 +67,7 @@ let logOut = () => {
           </button>
         </div>
 
-        <!--Account profile & login system--> 
+        <!--Account profile & login system, that is only shown when not logged in--> 
         <div class="log-ind-system">
           <RouterLink to='/log-ind'>
             <div v-if="!isLoggedIn">
@@ -83,7 +83,7 @@ let logOut = () => {
             </div>
           </RouterLink>
           
-          <!--Logout button IF logged in--> 
+          <!--Show logOut button IF logged in--> 
           <button 
           class="differentbutton" @click="logOut" v-if="isLoggedIn">Log ud</button>
         </div>
@@ -111,13 +111,15 @@ let logOut = () => {
         <RouterLink to="/køkken">Køkken</RouterLink>
         <RouterLink to="/bøger">Bøger</RouterLink>
         <RouterLink to="/blog">Blog</RouterLink>
-        <RouterLink to="/navguard" v-if="isLoggedIn">VIP</RouterLink>
+        <RouterLink to="/VIP" v-if="isLoggedIn">VIP</RouterLink>
       </nav>
     </div>
     
   </header>
 
-  <RouterView/>
+  <div class="routervieww">
+    <RouterView/>
+  </div>
 
   <!--footer--> 
   <footer>
@@ -151,7 +153,9 @@ header {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
-  box-shadow: 0 0 1em #00000013;
+  position: fixed;
+  width: 100%;
+  box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.2);
 
   /* Upper div of header */
   .upperhead {
@@ -175,6 +179,14 @@ header {
   justify-content: space-between;
   text-align: center; 
   }
+
+  h1 {
+  
+  font-size: 42px; 
+  font-family: "adorn-condensed-sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 .search__input {
   background-color: var(--white);
@@ -240,6 +252,10 @@ header {
     color: var(--black);
     }
   }
+}
+
+RouterView {
+  margin-top: 50vh;
 }
 
 /* Footer */

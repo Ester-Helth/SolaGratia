@@ -73,9 +73,9 @@ const router = createRouter({
 
     // Admin routes for login system
     {
-      path: '/navguard',
-      name: 'navguard',
-      component: () => import ('../views/NavGuardView.vue'),
+      path: '/VIP',
+      name: 'VIP',
+      component: () => import ('../views/VIP-NavGuardView.vue'),
       meta: {
         requiresAuth: true
       }

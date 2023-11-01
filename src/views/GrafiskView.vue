@@ -1,7 +1,7 @@
 <template>
     <div class="grafik-container">
         
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col content-center">
             <h1>Grafisk</h1>
             <p>Her kan du se vores grafik</p>
         </div>

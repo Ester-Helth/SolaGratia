@@ -31,11 +31,10 @@
   /* Subtitles */
   h2 {
     color: var(--black);
-    font-size: 19px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 500;
     font-style: normal;
     font-family: "elza-text", sans-serif;
-    
   }
 
   /* Subtitles */
@@ -119,6 +118,13 @@
     background-color: var(--darkerorange);
   }
 
+  .themebutton:focus {
+    background-color: var(--darkerorange);
+    font-weight: 500;
+  }
+
+
+  /* Buttons with the class .differentbutton */
   .differentbutton {
     background-color: var(--darkgreen);
     color: var(--white);
