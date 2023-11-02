@@ -39,7 +39,7 @@ const useProdukter = () => {
         produktKategori: "", 
     })
 
-    // makes it possible to get the data from firebase
+    // makes it possible to get the data from firebase and show it on the page
     const getProdukterData = () => {
         onSnapshot(produktDataRef, (snapshot) => {
             produkter.value = snapshot.docs.map(doc => {

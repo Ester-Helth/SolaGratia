@@ -6,30 +6,34 @@
             <p>Her kan du se vores grafik</p>
         </div>
 
-         <!-- showing products thats under the "grafik" category -->
-         <router-link :to="{ name: 'productdetaljer', params: { id: produkt.id }}">
-            <div class="product-view flex grid grid-cols-4 mt-10">
-                
-                <div class="product-card" v-for="produkt in produkter" :key="produkt">
-                    <div class="product-card-image">
-                        <img :src="produkt.produktBilleder" alt="Produktbillede af grafik">
-                    </div>
-                    <div class="product-card-info">
-                        <h3>
-                            {{ produkt.produktNavn }}
-                        </h3>
-                        <p>
-                            {{ produkt.produktPris }}
-                        </p>
-                        <button class="themebutton mt-2">Se mere</button>
+         <!-- showing products thats under the "grafik" category --> 
+        <div>
+                <div v-for="produkt in produkter" :key="produkt" class="grafik_innercontainer_bottom flex grid grid-cols-4">
+                   
+                    <div class="product-card" v-if="produkt.produktKategori == 'Grafik'">
+                    <router-link :to="`/produktdetaljer/${produkt.id}`">
+                        
+                    <!-- <router-link :to="{ name: 'produktdetaljer', params: { id: produkt.id }}"> -->
+                        
+                        <div class="product-card-image">
+                            <img :src="produkt.produktBilleder" alt="Produktbillede af grafik">
+                        </div>
+                        <div class="product-card-info">
+                            <h3>
+                                {{ produkt.produktNavn }}
+                            </h3>
+                            <p>
+                                {{ produkt.produktPris }}
+                            </p>
+                            <button class="themebutton mt-2">Se mere</button>
+                        </div>
+                        
+                        
+                    </router-link>
                     </div>
                 </div>
-
-            </div>
+        </div>
             
-        </router-link>
-
-
 
     </div>
 </template>
@@ -96,8 +100,6 @@ h3 {
     flex-direction: column;
     align-items: center;
 }
-
-
 
 
 </style>

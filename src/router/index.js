@@ -39,6 +39,13 @@ const router = createRouter({
       name: 'blog',
       component: () => import('../views/BlogView.vue')
     },
+    // route for Produkt details
+    {
+      path: '/produktdetaljer/:id',
+      name: 'produktdetaljer',
+      component: () => import('../views/ProduktDetaljerView.vue'),
+      props:true
+    },
 
     // routes for the footer
     {
