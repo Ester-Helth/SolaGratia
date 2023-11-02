@@ -58,7 +58,7 @@ const useProdukter = () => {
 
     // for adding product
     const firebaseAddSingleProdukt = async () => { 
-        const imageUrl = tutorImg.value; // the image url from the storage
+       // const imageUrl = produktImg.value; // the image url from the storage
         // tells it what collection to go
         await addDoc(collection(db, "produkter"),
             
@@ -110,6 +110,8 @@ const useProdukter = () => {
             });
         }
     }
+
+    // Categories filter
 
     // Images upload 
     const storage = getStorage();
@@ -164,7 +166,7 @@ const useProdukter = () => {
             () => {
             // If the upload is successful and now we have access to the download URL
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                produktBilleder.value = downloadURL 
+                AddProduktData.value.produktBilleder = downloadURL // downloadURL is the URL of the image
             });
             }  
         );

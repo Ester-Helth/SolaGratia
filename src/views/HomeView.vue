@@ -3,9 +3,19 @@
 </script>
 
 <template>
-    <div class="grafik-container">
+    <div class="home_body_container">
 
-       
+        <div class="home_body_innercontainer_top"> 
+            <h1 class="text-4xl">Velkommen til SolaGratia</h1>
+            <p>Ny dansk hjemmeside, der sælger produkter med skriftsteder fra Bibelen på.</p>
+            <p>God fornøjelse!</p>
+        </div>
+
+        <div class="homepage_hero_image">
+            <img src="@/assets/homepage_background.png" alt="hero image">
+        </div>
+
+
 
         <!--Yellow infobox about SolaGratia--> 
         <div class="about_container_SolaGratia py-10">
@@ -40,16 +50,30 @@
   padding: 0;
 }
 
-.grafik-container {
+.home_body_container {
     display: flex;
+    flex-direction: column;
     background-color: var(--white);
-    padding: 0;
+    padding-top: 50px;
+}
+
+    .home_body_innercontainer_top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
+    .homepage_hero_image {
+        width: auto;
+        padding: 0 40% 0 10%;
+    }
+
+
+    // about box 
     .about_container_SolaGratia {
         height: 400px;
         width: 100%;
-        margin-top: 100px;
+        margin-top: 35px;
         background-color: var(--yellow);
     }
 

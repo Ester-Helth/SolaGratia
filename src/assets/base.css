@@ -13,13 +13,14 @@
     --black: #070707;
     --white: #FAFAFA;
     --grey : #424242;
+    --lightgray: #e0e0e0;
 
     --icons: #262626;
   }
 
 /* typography */
 
-  /* Headlines (just one pr page, for better SEO) */
+  /* Headlines (Try to have just one pr page, for better SEO) */
   h1 {
     color: var(--black);
     font-size: 42px; 
@@ -28,7 +29,7 @@
     font-style: normal;
   }
 
-  /* Subtitles */
+  /* used in fx VIP */
   h2 {
     color: var(--black);
     font-size: 22px;
@@ -37,10 +38,14 @@
     font-style: normal;
   }
 
-  /* Subtitles */
+  /* used for products under each category */
   h3 {
     color: var(--black);
-   
+    font-size: 19px;
+    font-weight: 500;
+    font-style: normal;
+    font-family: "elza-text", sans-serif;
+    padding: 5px 0;
   }
 
   /* Subtitles */
@@ -160,3 +165,28 @@ input {
   margin-top: 5px;
 }
 
+/* products card on views under each category */
+.product-card {
+  border: none;
+  border-radius: 4px;
+  background-color: var(--lightgray);
+  margin: 10px;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-card-image{
+  max-height: max-content;
+  max-width: 18vw;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.product-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 10px;
+}

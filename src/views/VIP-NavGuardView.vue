@@ -1,67 +1,3 @@
-<!-- <template>
-    <div class="about">
-      <h1>This is an about page</h1>
-  
-      <button class="btn-add" @click="firebaseAddSingleItem()">Add Item</button>
-      <div> -->
-    <!--       <input type="text" placeholder="Product name" v-model="AddProductData.productName" >
-   -->
-   <!--    </div>
-      <hr>
-  
-      <div v-for="product in produkter" :key="product">
-        <p>
-          ProductID: {{ product.id  }}
-        </p>
-        <p>
-          ProductName: {{ product.productName }}
-        </p>
-        <p>
-          ProductPrice: {{ product.productPrice }}
-        </p>
-        <button class="btn-delete" @click="firebaseDeleteSingleItem(product.id)">Delete item</button>
-      
-        <p>
-          <input type="text" placeholder="New product name" v-model="product.productName" />
-        </p>
-        <button class="btn-edit" @click="firebaseUpdateSingleItem(product.id)">Edit item</button>
-        <hr>
-      </div>
-    </div> 
-  </template>-->
-<!--   
-  <script setup>
-  import useProducts from '../modules/useProdukter.js';
-  import { onMounted } from 'vue'
-  
-  const { 
-    produkter,  // henter data så bruger kan se det
-    getProdukterData,   // henter data så bruger kan se det
-    firebaseDeleteSingleItem, // til admin, så de kan slette produkter
-    firebaseAddSingleItem , // til admin, så de kan tilføje produkter
-    AddProductData,         // til admin, så de kan tilføje produkter - hører sammen med firebaseAddSingleItem
-    firebaseUpdateSingleItem, // til admin, så de kan redigere produkter
-    //UpdateProductData
-  } = useProducts();
-  
-  onMounted(() => {
-    getProdukterData()
-  })
-  
-  </script>
-  
-  <style>
-  @media (min-width: 1024px) {
-    .about {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-    }
-  }
-  </style>
-   -->
-<!-- Din egen nye udgave -->
-
 <template>
     <div class="navguard_container">
 
@@ -101,7 +37,7 @@
         
             <form novalidate @submit.stop.prevent="showSnackbar = true">
                 <!-- Name -->
-                <input type="text" placeholder="Produktets titel" v-model="AddProduktData.produktNavn" class="VIP_form_inputs_title">
+                <input type="text" placeholder="Produktets titel*" v-model="AddProduktData.produktNavn" class="VIP_form_inputs_title">
 
                 <!-- Description -->
                 <div class="mt-2">
@@ -115,13 +51,22 @@
                 <input type="text" placeholder="Produktets farve eller materialer" v-model="AddProduktData.produktFarve" class="VIP_form_inputs">
                 
                 <!-- Category - make a list here -->
-                <input type="text" placeholder="Kategori" v-model="AddProduktData.produktKategori" class="VIP_form_inputs">
+                <!-- <input type="text" placeholder="Kategori" v-model="AddProduktData.produktKategori" class="VIP_form_inputs"> -->
                 
+                <select class="VIP_form_inputs" v-model="AddProduktData.produktKategori">
+                    <option value="" disabled selected>Vælg en kategori*</option>
+                    <option value="Grafik">Grafik</option>
+                    <option value="Tøj">Tøj</option>
+                    <option value="Køkken">Køkken</option>
+                    <option value="Bøger">Bøger</option>
+                    <option value="Blog">Blog</option>
+                </select>
+
                 <!-- Price -->
-                <input type="text" placeholder="Produktets pris i kr." v-model="AddProduktData.produktPris" class="VIP_form_inputs">
+                <input type="text" placeholder="Produktets pris*" v-model="AddProduktData.produktPris" class="VIP_form_inputs">
 
                 <!-- image -->
-                <div class="flex flex-col justify-center content-center">
+                <div class="flex flex-col justify-center content-center image_form_container">
                     <p>Upload billede herunder</p>
                     <input v-on:change="AddProduktData.produktBilleder" @change="uploadImg" alt="produkt billede" type="file" label="File input" width="200" height="200">
                 </div>
@@ -165,8 +110,7 @@
     uploadImg,
   } = useProdukter();
 
-
-
+  
 
     // toggle til "grafik" itmes
 
@@ -256,4 +200,11 @@ form {
         font-weight: 500;
         font-style: normal;
     }
+
+    .image_form_container {
+        input button {
+            margin-top: 10px;
+        }
+    }
+
 </style>
