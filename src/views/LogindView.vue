@@ -22,7 +22,6 @@
         <!-- Remember me checkbox -->
         <div class="flex flex-row">
           <input type="checkbox" id="rememberme" name="rememberme" :true="true" :false="false" v-model="rememberMe" value="rememberme" @keyup.enter="logIn">
-          <label for="rememberme">Husk e-mail</label>
         </div>
           
         <!-- Error message -->
@@ -77,9 +76,7 @@ const rememberMe = ref(false);
     onMounted(() => {
       loadSavedCredentials();
     });
-/* 
-const rememberMe = ref(false);
- */
+
 
 /* code for login auth with firebase  --> user is send to /VIP (navguard) */
 let logIn = () => {
@@ -96,17 +93,7 @@ let logIn = () => {
       }
 
 
-        //if (rememberMe.value) {
-        // If "Remember Me" is checked, save user session data for a longer period
-        // You can use cookies, local storage, or a backend service for this.
-        // Example using local storage:
-       /*  localStorage.setItem('rememberedUser', JSON.stringify({ email: email.value }));
-        console.log("rememberMe", rememberMe.value) */
-    //  }
     })
-
-
-
 
     /* err message in different cases*/
     .catch((error) => {
@@ -131,17 +118,6 @@ let logIn = () => {
 }
 
 
-/* 
-    // Check for saved session data when the component is mounted
-    onMounted(() => {
-      const rememberedUser = localStorage.getItem('rememberedUser');
-      if (rememberedUser) {
-        rememberMe.value = rememberMe;
-        email.value = JSON.parse(rememberedUser).email;
-      }
-    }); */
-
-
 </script>
 
 <style lang="scss">
@@ -155,7 +131,7 @@ h1 {
     font-style: normal;
   }
 
-  // The whole routerpage
+  // This routerpage container
 .logind_container{
   padding: 30px 10%; 
 }

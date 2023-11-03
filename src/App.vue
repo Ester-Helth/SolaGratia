@@ -149,7 +149,7 @@ let logOut = () => {
 header {
   max-height: 23vh;
   background-color: var(--lightgreen);
-  padding: 0 10%;
+  padding: 15px 10%;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
@@ -258,7 +258,7 @@ header {
 
  /* Container for the routerview in the body */
 .routerview_container {
-  margin-top: 23vh;
+  margin-top: 21vh;
 }
 
 /* Footer */
@@ -272,12 +272,9 @@ footer {
   padding: 0 10%;
 }
 
-
-/* Responsive @media */
-@media (min-width: 1024px)
-{
-  header {
-    padding: 20px 10%;
+@media (max-width: 950px) {
+  .search {
+    display: none;
   }
 }
 

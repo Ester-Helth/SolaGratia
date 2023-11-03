@@ -51,7 +51,7 @@ const useProdukter = () => {
         })
     }
 
-    // makes it possible to delete a product
+    // to delete a product
     const firebaseDeleteSingleProdukt = async (id) => {
         console.log(id)
         await deleteDoc(doc(db, "produkter", id));
@@ -59,11 +59,10 @@ const useProdukter = () => {
 
     // for adding product
     const firebaseAddSingleProdukt = async () => { 
-       // const imageUrl = produktImg.value; // the image url from the storage
-        // tells it what collection to go
+       
         await addDoc(collection(db, "produkter"),
             
-            // adding the data
+            // adding data
             {
             produktNavn: AddProduktData.value.produktNavn,
             produktBeskrivelse: AddProduktData.value.produktBeskrivelse,
@@ -117,7 +116,6 @@ const useProdukter = () => {
         }
     }
 
-    // Categories filter
 
     // Images upload 
     const storage = getStorage();

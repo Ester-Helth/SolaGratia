@@ -20,16 +20,16 @@
                     <button class="themebutton" @click="toggleDisplay('Tøj')">Vis tøj</button>
                 </div>
                 <div>
-                    <button class="themebutton" @click="toggleDisplay('Køkkenting')">Vis køkkenting</button>
+                    <button class="themebutton" @click="toggleDisplay('Køkken')">Vis køkkenting</button>
                 </div>
                 <div>
                     <button class="themebutton" @click="toggleDisplay('Bøger')">Vis bøger</button>
                 </div>
                 <div>
-                    <button class="themebutton" @click="toggleDisplay('Blogopslag')">Vis blogopslag</button>
+                    <button class="themebutton" @click="toggleDisplay('Blog')">Vis blogopslag</button>
                 </div> 
                 <div>
-                    <button class="themebutton" @click="toggleDisplay('Blogopslag')">Luk kategorier</button>
+                    <button class="themebutton" @click="toggleDisplay('')">Luk kategori</button>
                 </div> 
 
             </div>
@@ -64,7 +64,6 @@
                                         <input type="text" placeholder="Rediger farve/materialer" v-model="produkt.produktFarve" class="VIP_form_inputs">
                                     </div>
 
-
                                     <div class="flex justify-between">
                                         <h2>Kategori:</h2>
                                         <select class="VIP_form_inputs" v-model="produkt.produktKategori">
@@ -88,10 +87,10 @@
                                 </div>
 
                                 <!-- save the edits-->
-                                <button class="themebutton mt-2" @click="firebaseUpdateSingleProdukt(produkt, produkter)">Gem oplysninger</button>
+                                <div class="themebutton mt-2 text-center" @click="firebaseUpdateSingleProdukt(produkt, produkter)">Gem oplysninger</div>
                                 
                                 <!-- delete item -->
-                                <button class="differentbutton mt-2" @click="firebaseDeleteSingleProdukt(produkt.id)">Slet produkt</button>
+                                <div class="differentbutton mt-2 text-center" @click="firebaseDeleteSingleProdukt(produkt.id)">Slet produkt</div>
                             
                             </div>
                         </div>
@@ -102,6 +101,8 @@
         </div>
     
         <!-- Add new product -->
+        
+        
         <div class="flex flex-col content-center justify-center pt-10">
             <h2>Tilføj nyt produkt</h2>
         
@@ -142,7 +143,8 @@
                 </div>
                 
                 <!-- button to add the product to firebase -->
-                <button class="themebutton mt-7" @click="firebaseAddSingleProdukt()">Tilføj produkt</button>
+                
+                <div class="themebutton mt-7 text-center" @click="firebaseAddSingleProdukt()">Tilføj produkt</div>
             </form>
 
             <!-- snackbar to show when user clicks the "add product" button above -->
@@ -180,8 +182,6 @@
     firebaseDeleteSingleProdukt, 
     firebaseUpdateSingleProdukt,
   } = useProdukter();
-
-    // making it possible to edit and delete products
 
     // toggle for categories to edit or delete
     const show = ref(false);

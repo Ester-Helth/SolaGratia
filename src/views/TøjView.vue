@@ -7,18 +7,34 @@
         </div>
 
         <!-- showing products for clothing -->
-        <div v-for="produkt in produkter" :key="produkt">
-            <div>
-                <img :src="produkt.produktBilleder" alt="Produktbillede af tøj">
-            </div>
-            <p>
-                {{ produkt.produktNavn }}
-            </p>
-            <p>
-                {{ produkt.produktPris }}
-            </p>
+        <div class="view_innercontainer_bottom flex grid grid-cols-4 mt-10">
+            <template v-for="produkt in produkter" :key="produkt">
+                <div v-if="produkt.produktKategori == 'Tøj'">
+                    <div class="product-card"> 
+                        
+                    <router-link :to="`/produktdetaljer/${produkt.id}`">
+                        <div class="product-card-content">
+                            <div class="product-card-image">
+                                <img :src="produkt.produktBilleder" alt="Produktbillede af grafik">
+                            </div>
+                
+                            <div class="product-card-info">
+                                <h3>
+                                    {{ produkt.produktNavn }}
+                                </h3>
+                                <p>
+                                    {{ produkt.produktPris }}
+                                </p>
+                                <button class="themebutton mt-2">Se mere</button>
+                            </div>
+                        </div>
+                        
+                        
+                    </router-link>
+                    </div>
+                </div>
+            </template>
         </div>
-
 
 
     </div>
@@ -26,23 +42,31 @@
 
 <script setup>
 
-    import useProdukter from '../modules/useProdukter.js';
-    import { onMounted } from 'vue'
+    import useProdukter from '@/modules/useProdukter.js'
+    import { onMounted, toRefs, computed } from 'vue'
 
-    // const { 
-    // produkter,  // henter data så bruger kan se det
-    // getProdukterData,   // henter data så bruger kan se det
-    // firebaseDeleteSingleItem, // til admin, så de kan slette produkter
-    // firebaseAddSingleItem , // til admin, så de kan tilføje produkter
-    // AddProductData,         // til admin, så de kan tilføje produkter - hører sammen med firebaseAddSingleItem
-    // firebaseUpdateSingleItem, // til admin, så de kan redigere produkter
-    // uploadImg,
-    // //UpdateProdukterData
-    // } = useProducts();
+    onMounted(() => {
+    getProdukterData();
+    })
 
-    // onMounted(() => {
-    // getProdukterData()
-    // })
+    // get single page
+    const props = defineProps({
+    id: String
+    })
+
+    const { id } = toRefs(props)
+
+    const { produkter, getProdukterData } = useProdukter();
+
+    const produktDetail = computed(() => {
+        return produkter.value.filter(item => item.id == id.value)
+    })
+
+    // scroll to top when opening page
+    onMounted(() => {
+    window.scrollTo(0, 0)
+    })
+
 
 
 </script>
@@ -55,6 +79,15 @@ h1 {
   font-weight: 400;
   font-style: normal;
 }
+
+h3 {
+    color: var(--black);
+    font-size: 19px;
+    font-weight: 500;
+    font-style: normal;
+    font-family: "elza-text", sans-serif;
+    padding: 5px 0;
+  }
 
 .tøj_container {
     display: flex;

@@ -175,6 +175,14 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 500px;
+}
+
+.product-card-content {
+  display: flex;
+  flex-direction: column;
+  height: 420px;
+  justify-content: space-between;
 }
 
 .product-card-image{
