@@ -7,10 +7,11 @@
         </div>
 
          <!-- showing products thats under the "grafik" category --> 
-        <div>
-                <div v-for="produkt in produkter" :key="produkt" class="grafik_innercontainer_bottom flex grid grid-cols-4">
-                   
-                    <div class="product-card" v-if="produkt.produktKategori == 'Grafik'">
+        <div class="view_innercontainer_bottom flex grid grid-cols-4 mt-10">
+            <template v-for="produkt in produkter" :key="produkt">
+                <div v-if="produkt.produktKategori == 'Grafik'">
+                    <div class="product-card"> 
+                        <!-- Sååå hvordan gør man sådan at der ikke kommer en div for alle dem der ikke er den kategori? -->
                     <router-link :to="`/produktdetaljer/${produkt.id}`">
                         
                     <!-- <router-link :to="{ name: 'produktdetaljer', params: { id: produkt.id }}"> -->
@@ -32,6 +33,7 @@
                     </router-link>
                     </div>
                 </div>
+            </template>
         </div>
             
 
@@ -100,6 +102,7 @@ h3 {
     flex-direction: column;
     align-items: center;
 }
+
 
 
 </style>

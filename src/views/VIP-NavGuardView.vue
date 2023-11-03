@@ -11,22 +11,92 @@
 
             <!-- the 5 categories to open-->
             <div class="pt-4 pb-14 flex gap-4">
-                <!-- <div>
-                    <button class="themebutton" @click="toggleGrafik>Vis grafik</button>
-                </div> -->
                 
-                <!-- // <div>
-                // <button class="white-btn" @click="">Vis tøj</button>
-                // </div>
-                // <div>
-                // <button class="white-btn" @click="">Vis køkkenting</button>
-                // </div>
-                // <div>
-                // <button class="white-btn" @click="">Vis bøger</button>
-                // </div>
-                // <div>
-                // <button class="white-btn" @click="">Vis blogopslag</button>
-                // </div> --> 
+                <!-- toggles to use when editing/deleting-->
+                <div>
+                    <button class="themebutton" @click="toggleDisplay('Grafik')">Vis grafik</button>
+                </div>
+                <div>
+                    <button class="themebutton" @click="toggleDisplay('Tøj')">Vis tøj</button>
+                </div>
+                <div>
+                    <button class="themebutton" @click="toggleDisplay('Køkkenting')">Vis køkkenting</button>
+                </div>
+                <div>
+                    <button class="themebutton" @click="toggleDisplay('Bøger')">Vis bøger</button>
+                </div>
+                <div>
+                    <button class="themebutton" @click="toggleDisplay('Blogopslag')">Vis blogopslag</button>
+                </div> 
+                <div>
+                    <button class="themebutton" @click="toggleDisplay('Blogopslag')">Luk kategorier</button>
+                </div> 
+
+            </div>
+
+            <!-- showing category that he user/admin chose -->
+            <div>
+                <div v-if="show" class="view_innercontainer_bottom flex grid grid-cols-2">
+                    <template v-for="produkt in produkter" :key="produkt">
+                        <div v-if="show == produkt.produktKategori">
+                            <div class="product-card-VIP"> 
+                              
+                                <!-- edit card -->
+                                <div class="product-card-info-VIP">
+                                    
+                                    <div class="flex justify-between">
+                                        <h2>Titel:</h2>
+                                        <input type="text" placeholder="Rediger titel" v-model="produkt.produktNavn" class="VIP_form_inputs_title">
+                                    </div>
+                                    
+                                    <div class="flex justify-between">
+                                        <h2>Beskrivelse:</h2>
+                                        <textarea type="text" placeholder="Rediger beskrivelse" rows="7" class="textarea_produktBeskrivelse" v-model="produkt.produktBeskrivelse" />
+                                    </div>
+                                    
+                                    <div class="flex justify-between">
+                                        <h2>Størrelse:</h2>
+                                        <input type="text" placeholder="Rediger størelse/proportioner" v-model="produkt.produktStørrelse" class="VIP_form_inputs">
+                                    </div>
+
+                                    <div class="flex justify-between">
+                                        <h2>Farve:</h2>
+                                        <input type="text" placeholder="Rediger farve/materialer" v-model="produkt.produktFarve" class="VIP_form_inputs">
+                                    </div>
+
+
+                                    <div class="flex justify-between">
+                                        <h2>Kategori:</h2>
+                                        <select class="VIP_form_inputs" v-model="produkt.produktKategori">
+                                            <option value disabled="">Rediger kategori</option>
+                                            <option value="Grafik">Grafik</option>
+                                            <option value="Tøj">Tøj</option>
+                                            <option value="Køkken">Køkken</option>
+                                            <option value="Bøger">Bøger</option>
+                                            <option value="Blog">Blog</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="flex justify-between">
+                                        <h2>Pris:</h2>
+                                        <input type="text" placeholder="Rediger pris" v-model="produkt.produktPris" class="VIP_form_inputs">
+                                    </div>                              
+                                </div>
+
+                                <div class="product-card-image-VIP mt-5 mb-4">
+                                    <img :src="produkt.produktBilleder" alt="Produktbillede af grafik">
+                                </div>
+
+                                <!-- save the edits-->
+                                <button class="themebutton mt-2" @click="firebaseUpdateSingleProdukt(produkt, produkter)">Gem oplysninger</button>
+                                
+                                <!-- delete item -->
+                                <button class="differentbutton mt-2" @click="firebaseDeleteSingleProdukt(produkt.id)">Slet produkt</button>
+                            
+                            </div>
+                        </div>
+                    </template>
+                </div>   
             </div>
 
         </div>
@@ -35,7 +105,7 @@
         <div class="flex flex-col content-center justify-center pt-10">
             <h2>Tilføj nyt produkt</h2>
         
-            <form novalidate @submit.stop.prevent="showSnackbar = true">
+            <form>
                 <!-- Name -->
                 <input type="text" placeholder="Produktets titel*" v-model="AddProduktData.produktNavn" class="VIP_form_inputs_title">
 
@@ -72,7 +142,7 @@
                 </div>
                 
                 <!-- button to add the product to firebase -->
-                <button class="differentbutton" @click="firebaseAddSingleProdukt()">Tilføj produkt</button>
+                <button class="themebutton mt-7" @click="firebaseAddSingleProdukt()">Tilføj produkt</button>
             </form>
 
             <!-- snackbar to show when user clicks the "add product" button above -->
@@ -92,15 +162,14 @@
 
     // modules import
     import useProdukter from '../modules/useProdukter.js'
+
     // import snackbarTilføjedeProdukter from '../modules/snackbarTilføjedeProdukter.js'
 
     // grabbing data from useProdukter.js
-    const {
-    getProdukterData, 
-    } = useProdukter();
+    const { produkter, getProdukterData } = useProdukter();
 
     onMounted(() => {
-    getProdukterData();
+        getProdukterData();
     })
 
     // making it possible to add new products
@@ -108,19 +177,17 @@
     firebaseAddSingleProdukt,
     AddProduktData,
     uploadImg,
+    firebaseDeleteSingleProdukt, 
+    firebaseUpdateSingleProdukt,
   } = useProdukter();
 
-  
+    // making it possible to edit and delete products
 
-    // toggle til "grafik" itmes
-
-    // const showGrafik = ref(false);
-    // const toggleGrafik= () => {
-    // showGrafik.value = !showGrafik.value;
-    // }
-
- 
-
+    // toggle for categories to edit or delete
+    const show = ref(false);
+    const toggleDisplay = (display) => {
+        show.value = display;
+    }
 
 </script>
 
@@ -140,6 +207,7 @@ h2 {
     font-weight: 400;
     font-style: normal;
 }
+
 
 // div containers
 .navguard_container {

@@ -47,7 +47,7 @@ let logOut = () => {
       <!--Logo-->  
       <div>
         <RouterLink to="/">
-          <img alt="SolaGratia logo" class="logo" src="@/assets/logo.svg" width="200" height="200"/>
+          <img alt="SolaGratia logo" class="logo" src="https://firebasestorage.googleapis.com/v0/b/solagratia-e08d2.appspot.com/o/Logo%2Flogo.svg?alt=media&token=ddca0330-5b9c-4e22-b912-dbede2fbb2de&_gl=1*jsprnr*_ga*MTA2OTg4NTg3MS4xNjg2ODIxNzQ4*_ga_CW55HF8NVT*MTY5OTAwODQ1My40My4xLjE2OTkwMDkyNjcuNjAuMC4w" width="200" height="200"/>
         </RouterLink>
       </div>
 

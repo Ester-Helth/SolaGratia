@@ -1,30 +1,34 @@
 <template>
-    <div>
+    <div class="product_detail_container flex">
         
-        <!-- filtrer i arrayet som produktet er gemt i -->
-        <div>
+        <!-- filtering in the array that the product is saved in -->
+        <div class="produkt-detail-image">
             <img :src="filteredArray[0].produktBilleder" alt="Produkt billede" />
         </div>
         
-        <div>
-            <h1>
-            {{ filteredArray[0].produktNavn }}
-            </h1>
-        </div>
-        
-        <div>
-            <p>
-            {{ filteredArray[0].produktPris }}
-            </p>
-            <p>
-            {{ filteredArray[0].produktBeskrivelse }}
-            </p>
-            <p>
-            {{ filteredArray[0].produktFarve }}
-            </p>
-            <p>
-            {{ filteredArray[0].produktStørrelse }}
-            </p>   
+        <div class="ml-10">
+            <div>
+                <h1>
+                {{ filteredArray[0].produktNavn }}
+                </h1>
+            </div>
+            
+            <div>
+                <p> <span class="font-medium">Pris:</span> 
+                {{ filteredArray[0].produktPris }}
+                </p>
+                <p> <span class="font-medium">Beskrivelse:</span> 
+                {{ filteredArray[0].produktBeskrivelse }}
+                </p>
+                <p> <span class="font-medium">Farve/materale:</span> 
+                {{ filteredArray[0].produktFarve }}
+                </p>
+                <p> <span class="font-medium">Størrelse:</span> 
+                {{ filteredArray[0].produktStørrelse }}
+                </p>   
+            </div>
+
+            <button class="themebutton mt-10"> Læg i kurv </button>
         </div>
     
     </div> 
@@ -53,13 +57,32 @@ const filterArray = () => {
 
 setTimeout(() => {
     filterArray()
-}, 2000);
+}, 1);
 
 
    
   </script>
   
   <style>
-  
+  h1 {
+    color: var(--black);
+    font-size: 42px; 
+    font-family: "adorn-condensed-sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.product_detail_container {
+    background-color: var(--lightgray);
+    padding: 90px 10%;
+}
+
+/* image */
+.produkt-detail-image {
+  max-height: max-content;
+  width: 26vw;
+  object-fit: cover;
+  border-radius: 4px;
+}
   
   </style>

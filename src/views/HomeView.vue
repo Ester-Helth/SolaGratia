@@ -12,7 +12,7 @@
         </div>
 
         <div class="homepage_hero_image">
-            <img src="@/assets/homepage_background.png" alt="hero image">
+            <img src="https://firebasestorage.googleapis.com/v0/b/solagratia-e08d2.appspot.com/o/Frontpage%20img%2Fhomepage_background.png?alt=media&token=12831f9b-86eb-4dbe-88cf-26dfccfa4599&_gl=1*vi6l1w*_ga*MTA2OTg4NTg3MS4xNjg2ODIxNzQ4*_ga_CW55HF8NVT*MTY5OTAwODQ1My40My4xLjE2OTkwMDg2MzMuNjAuMC4w" alt="hero image">
         </div>
 
 

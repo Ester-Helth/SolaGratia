@@ -53,7 +53,8 @@ const useProdukter = () => {
 
     // makes it possible to delete a product
     const firebaseDeleteSingleProdukt = async (id) => {
-        await deleteDoc(doc(db, "Produkter", id));
+        console.log(id)
+        await deleteDoc(doc(db, "produkter", id));
     }
 
     // for adding product
@@ -85,9 +86,12 @@ const useProdukter = () => {
     }
 
     // for updating product
-    const firebaseUpdateSingleProdukt = async (produktToUpdate) => { 
-        const findProdukt = produkter.value.find(t => t.id === produktToUpdate.id);
+    const firebaseUpdateSingleProdukt = async (produktToUpdate, produktArray) => { 
+        console.log(produktArray)
+        console.log(produktToUpdate.id)
+        const findProdukt = produktArray.find(t => t.id === produktToUpdate.id);
         
+        console.log(findProdukt)
         if (findProdukt) {
             const {
                 produktNavn,
@@ -98,6 +102,8 @@ const useProdukter = () => {
                 produktBilleder, 
                 produktKategori, 
             } = produktToUpdate;
+
+            console.log(produktBeskrivelse)
     
             await updateDoc(doc(produktDataRef, produktToUpdate.id), {
                 produktNavn,
